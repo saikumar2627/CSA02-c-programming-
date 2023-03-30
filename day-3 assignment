@@ -1,0 +1,325 @@
+QUESTION-1
+
+
+int main()
+{
+   int low, high, i, flag;
+   printf("enter two numbers(intervals): ");
+   printf(" saikumar enter two numbers(intervals): ");
+   scanf("%d %d", &low, &high);
+   printf("Prime numbers between %d and %d are: ", low, high);
+
+0 comments on commit efcdaf0
+
+
+QUESTION-2
+
+
+#include <stdio.h>
+int checkPrime(int n);
+int main() {
+  int n, i, flag = 0;
+  printf(" saikumar Enter a positive integer: ");
+  scanf("%d", &n);
+  for (i = 2; i <= n / 2; ++i) {
+    // condition for i to be a prime number
+    if (checkPrime(i) == 1) {
+      // condition for n-i to be a prime number
+      if (checkPrime(n - i) == 1) {
+        printf("%d = %d + %d\n", n, i, n - i);
+        flag = 1;
+      }
+    }
+  }
+
+  if (flag == 0)
+    printf("%d cannot be expressed as the sum of two prime numbers.", n);
+
+  return 0;
+}
+int checkPrime(int n) {
+  int i, isPrime = 1;
+
+  if (n == 0 || n == 1) {
+    isPrime = 0;
+  }
+  else {
+    for(i = 2; i <= n/2; ++i) {
+      if(n % i == 0) {
+        isPrime = 0;
+        break;
+      }
+    }
+  }
+
+
+QUESTION-3
+
+
+
+#include <stdio.h>
+int hcf(int n1, int n2);
+int main() {
+    int n1, n2;
+    printf(" saikumar enter two positive integers: ");
+    scanf("%d %d", &n1, &n2);
+    printf("G.C.D of %d and %d is %d.", n1, n2, hcf(n1, n2));
+    return 0;
+}
+int hcf(int n1, int n2) {
+    if (n2 != 0)
+        return hcf(n2, n1 % n2);
+    else
+        return n1;
+}
+
+
+QUESTION-4
+
+
+#include <stdio.h>
+    int main() {
+    int n1, n2, max;
+    printf(" saikumar Enter two positive integers: ");
+    scanf("%d %d", &n1, &n2);
+    max = (n1 > n2) ? n1 : n2;
+    while (1) {
+        if ((max % n1 == 0) && (max % n2 == 0)) {
+            printf("The LCM of %d and %d is %d.", n1, n2, max);
+            break;
+        }
+        ++max;
+    }
+    return 0;
+}
+
+
+QUESTION-5
+
+
+#include <stdio.h>
+#include <string.h>
+char string1[100], visited[100];
+int count[100] = {0}, flag = 0;
+void main()
+{
+    int i, j = 0, k = 0, l, max, index;
+    printf(" saikumar enter a string : ");
+    scanf("%[^\n]s", string1);
+    l = strlen(string1);
+    for (i = 0; i < l; i++)
+    {
+        if (i == 0)
+        {
+            visited[j++] = string1[i];
+            count[j - 1]++;
+        }
+        else
+        {
+            for (k = 0; k  < j; k++)
+            {
+                if (string1[i] == visited[k])
+                {
+                    count[k]++;
+                    flag = 1;
+                }
+            }
+            if (flag == 0)
+            {
+                visited[j++] = string1[i];
+                count[j - 1]++;
+            }
+            flag = 0;
+        }
+    }
+
+    for (i = 0; i < j; i++)
+    {
+        if ((i == 0) && (visited[i] != ' '))
+        {
+            max = count[i];
+            continue;
+        }
+        if ((max < count[i]) && (visited[i] != ' '))
+        {
+            max = count[i];
+            index = i;
+        }
+    }
+
+    printf("\nMax repeated character in the string = %c ", visited[index]);
+    printf("\nIt occurs %d times", count[index]);
+}
+
+
+
+QUESTION-6
+
+
+#include <stdio.h>
+#include <string.h>
+  int main (void) {
+   char s1[] = "hectare";
+   char s2[] = "teacher";
+   char temp;
+   int i, j;
+   int n  = strlen(s1);
+   int n1 = strlen(s2);
+   if( n != n1) {
+      printf(" saikumar %s and %s are not anagrams! \n", s1, s2);
+      return 0;
+   }
+   for (i = 0; i < n-1; i++) {
+      for (j = i+1; j < n; j++) {
+         if (s1[i] > s1[j]) {
+            temp  = s1[i];
+            s1[i] = s1[j];
+            s1[j] = temp;
+         }
+         if (s2[i] > s2[j]) {
+            temp  = s2[i];
+            s2[i] = s2[j];
+            s2[j] = temp;
+         }
+      }
+   }
+
+   for(i = 0; i<n; i++) {
+      if(s1[i] != s2[i]) {
+         printf("Strings are not anagrams! \n", s1, s2);
+         return 0;
+      }
+   }
+
+   printf("Strings are anagrams! \n");
+   return 0;
+}
+
+
+
+QUESTION-7
+
+
+#include <stdio.h>
+#include <string.h>
+void main()
+{
+    int sum = 0, i, len;
+    char string1[100];
+    printf(" saikumar enter an string : ");
+    scanf("%[^\n]s", string1);
+        len = strlen(string1);
+    for (i = 0; i < len; i++)
+    {
+        sum = sum + string1[i];
+    }
+    printf("\nSum of all characters : %d ",sum);
+}   
+
+
+
+QUESTION-8
+
+
+#include <stdio.h>
+#include <string.h>
+void swap (char *x, char *y)
+{
+    char temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+}
+void permute(char *a, int i, int n)
+{
+    int j;
+    if (i == n)
+        printf("%s\n", a);
+    else {
+        for (j = i; j <= n; j++)
+        {
+            swap((a + i), (a + j));
+            permute(a, i + 1, n);
+            swap((a + i), (a + j)); 
+        }
+    }
+}
+int main()
+{
+    char a[20];
+    int n;
+    printf(" saikumar Enter a string: ");
+    scanf("%s", a);
+    n = strlen(a);
+    printf("Permutaions:\n");
+    permute(a, 0, n - 1);
+    getchar();
+    return 0;
+}
+
+
+
+QUESTION-9
+
+
+#include <stdio.h>
+#define MAX_SIZE 100
+void printArray(int arr[], int size);
+int main()
+{
+    int source_arr[MAX_SIZE], dest_arr[MAX_SIZE];
+    int size, i;
+    int *source_ptr = source_arr; 
+    int *dest_ptr   = dest_arr;    
+    int *end_ptr;
+    printf(" saikumar b
+    enter size of array: ");
+    scanf("%d", &size);
+    printf("enter elements in array: ");
+    for (i = 0; i < size; i++)
+    {
+        scanf("%d", (source_ptr + i));
+    }
+    end_ptr = &source_arr[size - 1];
+    printf("\nSource array before copying: ");
+    printArray(source_arr, size);
+    printf("\nDestination array before copying: ");
+    printArray(dest_arr, size);
+    while(source_ptr <= end_ptr)
+    {
+        *dest_ptr = *source_ptr;
+        source_ptr++;
+        dest_ptr++;
+    }
+    printf("\n\nSource array after copying: ");
+    printArray(source_arr, size);
+    printf("\nDestination array after copying: ");
+    printArray(dest_arr, size);
+    return 0;
+}
+void printArray(int *arr, int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+         {
+        printf("%d, ", *(arr + i));
+    }
+    //getch();
+}
+
+
+
+QUESTION-10
+
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+   char s[100];
+   printf(" saikumar Enter a string to reverse\n");
+   gets(s);
+   strrev(s);
+   printf("Reverse of the string: %s\n", s);
+   return 0;
+}
