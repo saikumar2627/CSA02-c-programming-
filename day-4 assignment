@@ -1,0 +1,453 @@
+#include<stdio.h>
+struct employee
+{
+     int e;
+     char name[20];
+     char designation[20];
+     char dept[20];
+     int sal;
+};
+int main()
+{
+     struct employee a;
+     printf(" saikumar Enter Employee Details:\n");
+     printf("Enter Employee-Id : ");
+     scanf("%d",&a.e);
+     printf("Enter Name        : ");
+     scanf("%s",a.name);
+     printf("Enter Designation : ");
+     scanf("%s",a.designation);
+     printf("Enter Department  : ");
+     scanf("%s",a.dept);
+     printf("Enter Salary      : ");
+     scanf("%d",&a.sal);
+     printf("\nEmployee Details:");
+     printf("Employee-Id : %d\n",a.e);
+     printf("Name        : %s\n",a.name);
+     printf("Designation : %s\n",a.designation);
+     printf("Department  : %s\n",a.dept);
+     printf("Salary      : %d\n",a.sal);
+     return 0;
+}
+
+
+
+QUESTION-2
+
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_PLAYERS 11
+
+struct Player {
+    char name[50];
+    int runs;
+};
+int main() 
+{
+    struct Player team[MAX_PLAYERS];
+    int n, total_runs = 0;
+
+    printf(" saikumar Enter number of players in the team (max %d): ", MAX_PLAYERS);
+    scanf("%d", &n);
+
+    if (n > MAX_PLAYERS) 
+	{
+        printf("Error: Too many players in the team.");
+        return 1;
+    }
+    for (int i = 0; i < n; i++) 
+	{
+        printf("Enter name of player %d: ", i+1);
+        scanf("%s", team[i].name);
+        printf("Enter runs scored by %s: ", team[i].name);
+        scanf("%d", &team[i].runs);
+        total_runs += team[i].runs;
+    }
+    printf("\nBatting information:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%s scored %d runs.\n", team[i].name, team[i].runs);
+    }
+    printf("\nTotal runs scored by the team: %d\n", total_runs);
+    return 0;
+}
+
+
+
+QUESTION-3
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int calculateAge(int birth_year, int birth_month, int birth_day) {
+    time_t t = time(NULL);
+    struct tm current_time = *localtime(&t);
+    int current_year = current_time.tm_year + 1900;
+    int current_month = current_time.tm_mon + 1;
+    int current_day = current_time.tm_mday;
+
+    int age = current_year - birth_year;
+    if (current_month < birth_month || (current_month == birth_month && current_day < birth_day)) {
+        age--;
+    }
+
+    return age;
+}
+
+int main() {
+    char name[100];
+    int roll_number;
+    int birth_year, birth_month, birth_day;
+    int admission_year, admission_month, admission_day;
+
+    printf("saikumar Enter name of student: ");
+    scanf("%[^\n]%*c", name);
+
+    printf("Enter roll number: ");
+    scanf("%d", &roll_number);
+
+    printf("Enter date of birth (YYYY-MM-DD): ");
+    scanf("%d-%d-%d", &birth_year, &birth_month, &birth_day);
+
+    printf("Enter date of admission (YYYY-MM-DD): ");
+    scanf("%d-%d-%d", &admission_year, &admission_month, &admission_day);
+
+    int age = calculateAge(birth_year, birth_month, birth_day);
+    printf("%s's age at the time of admission was %d\n", name, age);
+
+    return 0;
+}
+
+
+
+QUESTION-4
+
+
+#include <stdio.h>
+
+struct Customer 
+{
+    int account_no;
+    char name[50];
+    float balance;
+};
+
+void print_low_balance_customers(struct Customer customers[], int n);
+
+int main() 
+{
+    struct Customer customers[3];
+    int i;
+    
+    for (i = 0; i < 3; i++) 
+	{
+        printf(" saikumar Enter details of customer %d:\n", i + 1);
+        printf("Account no.: ");
+        scanf("%d", &customers[i].account_no);
+        printf("Name: ");
+        scanf("%s", customers[i].name);
+        printf("Balance: ");
+        scanf("%f", &customers[i].balance);
+    }
+    printf("\nDetails of customers with balance less than 100 Rs:\n");
+    print_low_balance_customers(customers, 3);
+
+    return 0;
+}
+
+void print_low_balance_customers(struct Customer customers[], int n)
+{
+    int i;
+    for (i = 0; i < n; i++) 
+	{
+        if (customers[i].balance < 100) 
+		{
+            printf("Account no.: %d, Name: %s\n", customers[i].account_no, customers[i].name);
+            //getch();
+        }
+    }
+}
+
+
+QUESTION-5
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Employee 
+{
+    int eno;
+    char ename[100];
+    float salary;
+};
+
+int main() 
+{
+    int n, i;
+    struct Employee employees[100];
+
+    printf(" saikumar Enter the number of employees: ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) 
+	{
+        printf("Enter details of employee %d:\n", i+1);
+
+        printf("Enter employee number: ");
+        scanf("%d", &employees[i].eno);
+
+        printf("Enter employee name: ");
+        scanf("%s", employees[i].ename);
+
+        printf("Enter employee salary: ");
+        scanf("%f", &employees[i].salary);
+    }
+    int max_index = 0;
+    float max_salary = employees[0].salary;
+
+    for (i = 1; i < n; i++) {
+        if (employees[i].salary > max_salary) 
+		{
+            max_salary = employees[i].salary;
+            max_index = i;
+        }
+    }
+    printf("\nDetails of employee with highest salary:\n");
+    printf("Employee number: %d\n", employees[max_index].eno);
+    printf("Employee name: %s\n", employees[max_index].ename);
+    printf("Employee salary: %.2f\n", employees[max_index].salary);
+
+    return 0;
+}
+
+
+
+QUESTION-6
+
+
+
+#include<stdio.h>
+struct student
+{
+     int rno;
+     char name[20];
+     int marks[3];
+     int total;
+     float avg;
+}stud[2];
+int main()
+{
+     int i,j;
+     struct student s;
+     for(i=0;i<2;i++)
+     {
+          printf(" saikumar Enter Record for Student-%d \n",i+1);
+          printf("\n");
+          printf("Enter Roll-No. : ");
+          scanf("%d",&stud[i].rno);
+          printf("Enter Name: ");
+          scanf("%s",stud[i].name);
+          stud[i].total=0;
+          for(j=0;j<3;j++)
+          {
+               printf("Enter Marks of Subject %d : ",j+1);
+               scanf("%d",&stud[i].marks[j]);
+               stud[i].total=stud[i].total+stud[i].marks[j] ;
+               stud[i].avg=stud[i].total/3.0;
+          }
+          printf("\n");
+     }
+     for(i=0;i<2;i++)
+     {
+          for(j=i+1;j<2;j++)
+          {
+               if(stud[i].total<stud[j].total)
+               {
+                    s=stud[i];
+                    stud[i]=stud[j];
+                    stud[j]=s;
+               }
+          }
+     }
+     printf("Records in Descending Order.\n (According to Total-Marks)");
+     printf("\n");
+     printf("\n ROLLNO   NAME  TOTAL-MARKS  AVG\n");
+     for(i=0;i<2;i++)
+     {
+          printf("\n %d\t %s\t %d\t %.2f",stud[i].rno,stud[i].name,stud[i].total,stud[i].avg);
+     }
+     return 0;
+}
+
+
+QUESTION-7
+
+
+
+#include<stdio.h>
+struct student
+{
+     int rno;
+     char name[20];
+     int marks[3];
+     int total;
+     float avg;
+}stud[2];
+int main()
+{
+     int i,j;
+     struct student s;
+     for(i=0;i<2;i++)
+     {
+          printf(" saikumar Enter Record for Student-%d \n",i+1);
+          printf("\n");
+          printf("Enter Roll-No. : ");
+          scanf("%d",&stud[i].rno);
+          printf("Enter Name: ");
+          scanf("%s",stud[i].name);
+          stud[i].total=0;
+          for(j=0;j<3;j++)
+          {
+               printf("Enter Marks of Subject %d : ",j+1);
+               scanf("%d",&stud[i].marks[j]);
+               stud[i].total=stud[i].total+stud[i].marks[j] ;
+               stud[i].avg=stud[i].total/3.0;
+          }
+          printf("\n");
+     }
+     for(i=0;i<2;i++)
+     {
+          for(j=i+1;j<2;j++)
+          {
+               if(stud[i].total<stud[j].total)
+               {
+                    s=stud[i];
+                    stud[i]=stud[j];
+                    stud[j]=s;
+               }
+          }
+     }
+     printf("Records in Descending Order.\n (According to Total-Marks)");
+     printf("\n");
+     printf("\n ROLLNO   NAME  TOTAL-MARKS  AVG\n");
+     for(i=0;i<2;i++)
+     {
+          printf("\n %d\t %s\t %d\t %.2f",stud[i].rno,stud[i].name,stud[i].total,stud[i].avg);
+     }
+     return 0;
+}
+
+
+
+QUESTION-8
+
+
+
+#include <stdio.h>
+
+union Data {
+    int i;
+    float f;
+};
+
+int main() 
+{
+    union Data data;
+
+    printf(" saikumar Enter an integer value: ");
+    scanf("%d", &data.i);
+
+    printf("The value you entered is: %d\n", data.i);
+
+    printf("Enter a float value: ");
+    scanf("%f", &data.f);
+
+    printf("The value you entered is: %f\n", data.f);
+
+    return 0;
+}
+
+
+
+QUESTION-9
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+union Student 
+{
+    char name[50];
+    float gpa;
+};
+
+int main() 
+{
+    union Student student;
+
+    printf(" saikumar Enter the student's name: ");
+    fgets(student.name, 50, stdin);
+
+    printf("Enter the student's GPA: ");
+    scanf("%f", &student.gpa);
+
+    printf("Student's name: %s", student.name);
+    printf("Student's GPA: %.2f\n", student.gpa);
+
+    return 0;
+}
+
+
+
+QUESTION-10
+
+
+#include <stdio.h>
+#define PI 3.14159
+
+union Shape 
+{
+    float radius;
+    struct 
+	{
+        float length;
+        float width;
+    } 
+	rectangle;
+};
+
+int main() 
+{
+    union Shape shape;
+    char choice;
+
+    printf(" saikumar Enter the type of shape you want to calculate (C for circle, R for rectangle): ");
+    scanf("%c", &choice);
+
+    if (choice == 'C' || choice == 'c') 
+	{
+        printf("Enter the radius of the circle: ");
+        scanf("%f", &shape.radius);
+        printf("Area of the circle is: %.2f\n", PI * shape.radius * shape.radius);
+    } 
+	else if (choice == 'R' || choice == 'r') 
+	{
+        printf("Enter the length of the rectangle: ");
+        scanf("%f", &shape.rectangle.length);
+        printf("Enter the width of the rectangle: ");
+        scanf("%f", &shape.rectangle.width);
+        printf("Area of the rectangle is: %.2f\n", shape.rectangle.length * shape.rectangle.width);
+    } 
+	else 
+	{
+        printf("Invalid choice!\n");
+    }
+    return 0;
+}
+
